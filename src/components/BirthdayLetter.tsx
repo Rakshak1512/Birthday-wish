@@ -3,6 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Mail, MailOpen } from 'lucide-react';
 import { BIRTHDAY_DATA } from '../data/birthdayContent';
 
+const renderFormattedText = (text: string) => {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={i} className="font-semibold text-[#49334F]">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+};
+
 export const BirthdayLetter: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -77,7 +91,7 @@ export const BirthdayLetter: React.FC = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.96 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full max-w-2xl relative rounded-2xl bg-[#FFFDF9] border border-[#E8C98A]/50 shadow-[0_25px_60px_rgba(73,51,79,0.1)] p-8 sm:p-14 overflow-hidden"
+              className="w-full max-w-2xl relative rounded-2xl bg-[#FFFDF9] border border-[#E8C98A]/50 shadow-[0_25px_60px_rgba(73,51,79,0.1)] p-6 sm:p-12 md:p-14 overflow-hidden"
             >
               {/* Delicate Floral Corner Accents */}
               <div className="absolute top-4 left-4 text-[#E8C98A]/60 text-lg select-none">❧</div>
@@ -96,51 +110,36 @@ export const BirthdayLetter: React.FC = () => {
               </div>
 
               {/* Letter Paragraphs with Staggered Fade In */}
-              <div className="space-y-4 font-serif text-[#49334F] text-base sm:text-lg leading-relaxed relative z-10">
+              <div className="space-y-4 sm:space-y-5 font-serif text-[#49334F] text-base sm:text-lg leading-relaxed relative z-10">
                 {BIRTHDAY_DATA.letter.paragraphs.map((para, index) => {
                   const isGreeting = index === 0;
-                  const isSalutation = index === 1;
-                  const isEmphasis = index === 7; // "Happy Birthday, Shamitha! 🌸✨"
 
                   return (
                     <motion.p
                       key={index}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.15 + index * 0.1, duration: 0.6 }}
-                      className={`
-                        ${isGreeting ? 'text-2xl sm:text-3xl font-normal text-[#49334F] mb-4' : ''}
-                        ${isSalutation ? 'text-lg sm:text-xl font-medium text-[#E99AB5]' : ''}
-                        ${isEmphasis ? 'text-xl sm:text-2xl text-[#E99AB5] font-medium pt-2' : ''}
-                        ${!isGreeting && !isSalutation && !isEmphasis ? 'text-[#49334F]/90 font-light' : ''}
-                      `}
+                      transition={{ delay: 0.12 + index * 0.06, duration: 0.5 }}
+                      className={
+                        isGreeting
+                          ? 'text-2xl sm:text-3xl font-serif text-[#49334F] font-medium mb-3 sm:mb-4'
+                          : 'text-[#49334F]/90 font-light leading-relaxed'
+                      }
                     >
-                      {para}
+                      {renderFormattedText(para)}
                     </motion.p>
                   );
                 })}
-
-                {/* Hand-written Signature Section */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.15 + BIRTHDAY_DATA.letter.paragraphs.length * 0.1, duration: 0.8 }}
-                  className="pt-8 border-t border-[#E8C98A]/30 mt-6"
-                >
-                  <p className="font-serif italic text-sm text-[#49334F]/70">
-                    {BIRTHDAY_DATA.letter.signature.salutation}
-                  </p>
-                  <p className="font-script text-2xl sm:text-3xl text-[#49334F] font-bold mt-1">
-                    {BIRTHDAY_DATA.letter.signature.sender}
-                  </p>
-                </motion.div>
               </div>
 
+              {/* Subtle decorative divider */}
+              <div className="pt-6 border-t border-[#E8C98A]/30 mt-6" />
+
               {/* Close / Fold Button */}
-              <div className="mt-8 flex justify-center relative z-10">
+              <div className="mt-4 flex justify-center relative z-10">
                 <button
                   onClick={toggleOpen}
-                  className="text-xs text-[#49334F]/60 hover:text-[#E99AB5] flex items-center gap-1.5 transition cursor-pointer py-1 px-3 rounded-full hover:bg-[#F8C8DC]/20"
+                  className="text-xs text-[#49334F]/60 hover:text-[#E99AB5] flex items-center gap-1.5 transition cursor-pointer py-1.5 px-4 rounded-full hover:bg-[#F8C8DC]/20"
                 >
                   <span>Close letter</span>
                   <span>✕</span>
