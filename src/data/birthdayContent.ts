@@ -2,7 +2,7 @@ export const BIRTHDAY_DATA = {
   recipientName: "Shamitha",
   titleHonorific: "For Someone Truly Special — Shamitha ♡",
   tagline: "Today is your day to shine. ✨",
-  
+
   hero: {
     heading: "Happy Birthday, Shamitha! 🎂",
     subtitle: "Today is all about celebrating you, your happiness, and all the beautiful things waiting for you.",
@@ -29,7 +29,8 @@ export const BIRTHDAY_DATA = {
       "**I just want our friendship back, if you want it too.** 💗",
       "Whatever your answer is, I'll respect your choice. I don't expect everything to stay the same forever, but I hope we can keep this friendship meaningful. I don't want you to block me or treat me like a stranger. You are one of my favourite people, and I'm genuinely happy that I got to know you.",
       "Take your time to think about it. I just wanted you to know how I feel. ❤️"
-    ]
+    ],
+    closingLine: "someone who thinks you're special, ♡"
   },
 
   finalCelebration: {

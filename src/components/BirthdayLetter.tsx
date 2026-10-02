@@ -130,6 +130,23 @@ export const BirthdayLetter: React.FC = () => {
                     </motion.p>
                   );
                 })}
+
+                {/* Closing Line with Slanted Cursive Script Font & Heart Emoji */}
+                {BIRTHDAY_DATA.letter.closingLine && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: 0.12 + BIRTHDAY_DATA.letter.paragraphs.length * 0.06,
+                      duration: 0.6,
+                    }}
+                    className="pt-4"
+                  >
+                    <p className="font-script italic text-2xl sm:text-3xl text-[#49334F] font-bold">
+                      {BIRTHDAY_DATA.letter.closingLine}
+                    </p>
+                  </motion.div>
+                )}
               </div>
 
               {/* Close / Fold Button */}
