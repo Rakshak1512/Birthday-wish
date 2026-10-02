@@ -132,14 +132,11 @@ export const BirthdayLetter: React.FC = () => {
                 })}
               </div>
 
-              {/* Subtle decorative divider */}
-              <div className="pt-6 border-t border-[#E8C98A]/30 mt-6" />
-
               {/* Close / Fold Button */}
-              <div className="mt-4 flex justify-center relative z-10">
+              <div className="mt-8 flex justify-center relative z-10">
                 <button
                   onClick={toggleOpen}
-                  className="text-xs text-[#49334F]/60 hover:text-[#E99AB5] flex items-center gap-1.5 transition cursor-pointer py-1.5 px-4 rounded-full hover:bg-[#F8C8DC]/20"
+                  className="text-xs text-[#49334F]/60 hover:text-[#E99AB5] flex items-center gap-1.5 transition cursor-pointer py-1 px-3 rounded-full hover:bg-[#F8C8DC]/20"
                 >
                   <span>Close letter</span>
                   <span>✕</span>
